@@ -22,7 +22,7 @@
         <tr><td>
             <h3><%= x.header %></h3>
             <small>posted on:</small>
-            <%= x.created_at.strftime("%b %d, %Y, %I:%M %P") %>
+            <%= x.created_at.to_time %>
             <br>
             <%= simple_format(x.content) %>
         </td></tr>
