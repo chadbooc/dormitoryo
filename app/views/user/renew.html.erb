@@ -1,0 +1,10 @@
+
+<% if @app_status == 0 %>
+	<%= link_to "renew", apply_save_path(:status => 1), method: :post%>
+	<br>
+	<%= link_to "apply for other dorms", apply_save_path(:status => 2), method: :post %>
+	dapat may mag-pop up na parang if you click this, you're going to be considered as a new applicant
+	<br>
+<% elsif @app_status == 1 %>
+	You have submitted your application for renewal, please wait for further notice
+<% end %> 

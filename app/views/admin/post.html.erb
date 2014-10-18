@@ -1,0 +1,13 @@
+
+<h3>Post Announcements</h3>
+
+<%= form_tag :action => 'post_it' do%>
+	<p>Subject:</p>
+	<%= text_area(:post, :header, :rows => 1, :cols => "50%" ) %><br/>
+	<p>Content:</p>
+	<%= text_area(:post, :content, :rows => 10, :cols => "50%" ) %><br/>
+	
+	<%= submit_tag("post") %>
+<% end %>
+
+<br>

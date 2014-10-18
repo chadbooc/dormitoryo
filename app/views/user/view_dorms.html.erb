@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<th>Dorm</th>
+		<th>Available slots</th>
+		<th>Total slots</th>
+	</tr>
+
+	<%@dorms.each do |x|%>
+	
+	<tr>
+		<td><%=	x.dorm_name %></td>
+		<td><%= Dorm.available(x.id) %></td>			
+		<td><%=	x.total_slots %></td>	
+		
+		<% if Admin.authenticate(current_user.username) == 0%>
+			<td><%= link_to "modify", "admin/modify_slots/" + x.id.to_s %></td>
+		<% end %>
+				
+	</tr>
+
+	<%end%>
+</table>

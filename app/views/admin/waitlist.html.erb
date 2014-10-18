@@ -1,0 +1,27 @@
+<%= form_tag :action => 'search_by_snum', :id => @record do %>
+
+	<%= number_field :record, :student_number %>
+
+<%= submit_tag 'search' %>
+<% end %>
+
+<%= @student %>
+
+<table>
+	<tr>
+		<th>student no.</th>
+		<th>name</th>
+		<th>action</th>
+	</tr>
+	
+	<tr>
+		<td><%=	x.dorm_name %></td>
+		<td><%= Dorm.available(x.id) %></td>			
+		<td><%=	x.total_slots %></td>	
+		
+		<% if Admin.authenticate(current_user.username) == 0%>
+			<td><%= link_to "modify", "admin/modify_slots/" + x.id.to_s %></td>
+		<% end %>
+				
+	</tr>
+</table>

@@ -1,0 +1,51 @@
+
+<h2><%= @dorm.dorm_name %></h2>
+
+<%= form_tag :action => 'save', :id => @dorm do %>
+
+<p><label for='total_slots'>Total slots</label>
+<%= number_field :dorm, :total_slots %></p>
+<h4>allotment</h4>
+
+<table>
+	<tr>
+		<th>Category</th>
+		<th>male</th>
+		<th>female</th>
+	</tr>
+
+	<tr>
+		<td>Freshmen</td>
+		<td><%= number_field :dorm_allotment, :freshie_m %></td>
+		<td><%= number_field :dorm_allotment, :freshie_f %></td>
+	</tr>
+	<tr>
+		<td>Upperclass</td>
+		<td><%= number_field :dorm_allotment, :upperclass_m %></td>
+		<td><%= number_field :dorm_allotment, :upperclass_f %></td>
+	</tr>
+	<tr>
+		<td>Graduate</td>
+		<td><%= number_field :dorm_allotment, :graduate_m %></td>
+		<td><%= number_field :dorm_allotment, :graduate_f %></td>
+	</tr>
+</table>
+
+<%= submit_tag 'save' %>
+<% end %>
+
+<% if @dorm.errors.any? || @dorm_allotment.errors.any?%>
+  <div id="error_explanation"> 
+    <ul>
+    
+    <% @dorm.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+
+    <% @dorm_allotment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    
+    </ul>
+  </div>
+<% end %>

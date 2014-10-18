@@ -1,0 +1,45 @@
+ 
+<% if @dormer%>
+	Click
+	<%= link_to "here", apply_save_path(:status => 1), method: :post%>
+	to renew instead.
+	<br>
+<% end %>
+
+<br>
+<br>  
+<table>
+	<tr>
+		<th>Dorm</th>
+		<th>Available slots</th>
+		<th>Demand</th>
+		<th>Total slots</th>
+	</tr>
+
+	<%= @mess %>
+	<%@dorms.each do |x|%>
+	<tr>
+		<td><%=	x.dorm_name %></td>
+		<td><%= Dorm.available(x.id) %></td>
+		<td><%= Applicant.demand(x.id) %></td>	
+		<td><%=	x.total_slots %></td>	
+		
+		<% if !@admin %> 
+			<td>
+				<% if Applicant.applied(current_user.student_number, x.id) == nil%>
+					<%= link_to 'select', select_path(:id => x.id), method: :post %>
+				<% else %>
+				Desired already
+				<%end%>
+			</td>		
+		<% end %>
+	</tr>
+	<%end%>
+</table>
+
+<% if !@admin %> 
+<br>
+<%= link_to 'arrange dorm preferrence>>', sort_path %>
+<% end %>
+<br>
+<br>

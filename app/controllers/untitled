@@ -1,0 +1,26 @@
+
+possible problems:
+
+1. kapag nag-edit ng allotment yung OSH at nakapag-apply na yung tao
+	ex
+	original:
+		Molave Residence Hall
+			Freshie male: 100
+			Upperclass male: 200
+	action:
+		MR.Freshie applies for Molave
+	action:
+		OSH changed Molave allotment
+			Freshie male: 0
+			Upperclass male: 200
+			Upperclass female: 100
+
+solution: mag-cascade or ask the student to remove
+
+
+2. Sabay ba sa first batch run yung renewal?
+	-if sabay, kasama ba sa demand yung nag-rerenew?
+		-if kasama, does this mean back to available_slots ~ total_slots?
+		-if hindi, does this mean, available slots = total_slots*0.20?
+
+3. Paano malalaman kung freshie, grad, upperclass, or athlete?

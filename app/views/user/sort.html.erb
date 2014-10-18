@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<th>Dorm</th>
+		<th>Available slots</th>
+		<th>Total slots</th>
+	</tr>
+
+	<%@dorm.each do |x|%>
+	<tr>
+		<td><%=	x.dorm_name %></td>
+		<td><%= Dorm.available(x.id) %></td>			
+		<td><%=	x.total_slots %></td>	
+		<td><%= link_to 'remove', remove_path(:id => x.id), method: :post %></td>	
+	</tr>
+
+	<%end%>
+</table>
+
+<br>
+<%= link_to '<<back to dorm selection', new_application_path %>
+<br>
+<br>

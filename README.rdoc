@@ -1,0 +1,156 @@
+CS 191 == README
+
+1. rails 4.1.6 yung gamit ko dito
+2. using i-edit n'yo yung database.yml dapende sa gamit nyong database
+3. set-up n'yo muna yung database nyo
+	meaning: CREATE DATABASE IF NOT EXISTS (nameofdatabase)
+4. check n'yo yung gems n'yo
+	dapat meron kayong 'bcrypt-ruby' at 'mysql2'
+5. kung ok na
+	rake db:migrate
+6. di ko alam kung paano isama yung database na ginamit ko. lol. so gagawa kayo ng sarili n'yo
+by that, I mean wala pang laman yung database nyo
+we have 3 tables na kailangang may laman before hand: users, dorms, at records
+to create entries using rails:
+	i. go to the directory of this file
+	ii. type 'rails console'
+	iii.
+u = User.create student_number:201236209, username:'ddhostallero', password:'password'
+d = Dorm.create dormname:'molave'
+r = Record.create student_number:201236209, first_name:'david', last_name:'hostallero'
+
+OR you can do that on mysql
+
+7. type 'rails server'
+8. localhost:3000
+
+========================================================================
+sa third iteration na ako magooptimize ng database so expect changes
+
+=============================UPDATED INPUTS=============================
+==============================OCT 18, 2014==============================
+
+u = User.create student_number:201236209, username:"ddhostallero", password:"password"
+u = User.create student_number:201251283, username:"crbooc", password:"password"
+u = User.create student_number:201227860, username:"cdbillones", password:"password"
+
+#admins
+admin = User.create username:"OSHAdmin", password:"password"
+admin = User.create username:"KalayaanRA", password:"password"
+admin = User.create username:"MolaveRA", password:"password"
+admin = User.create username:"YakalRA", password:"password"
+admin = User.create username:"IpilRA", password:"password"
+admin = User.create username:"SanggumayRA", password:"password"
+admin = User.create username:"IlangRA", password:"password"
+admin = User.create username:"KamiaRA", password:"password"
+admin = User.create username:"SampaguitaRA", password:"password"
+admin = User.create username:"CentennialRA", password:"password"
+
+a = Admin.create username:"KalayaanRA", dorm_id:1
+a = Admin.create username:"MolaveRA", dorm_id:2
+a = Admin.create username:"YakalRA", dorm_id:3
+a = Admin.create username:"IpilRA", dorm_id:4
+a = Admin.create username:"SanggumayRA", dorm_id:5
+a = Admin.create username:"IlangRA", dorm_id:6
+a = Admin.create username:"KamiaRA", dorm_id:7
+a = Admin.create username:"SampaguitaRA", dorm_id:8
+a = Admin.create username:"CentennialRA", dorm_id:9
+a = Admin.create username:"OSHAdmin", dorm_id:0
+
+#records
+r = Record.create student_number:201236209, first_name:"David Earl", last_name:"Hostallero", region:"SOCCSKSARGEN", sts_bracket:"B", app_status:0, sex:"male", student_tag:"upperclass"
+r = Record.create student_number:201251283, first_name:"Chad Errol", last_name:"Booc", region:"Central Visayas", sts_bracket:"B", app_status:0, sex:"male", student_tag:"upperclass"
+r = Record.create student_number:201227860, first_name:"Ciprian Jr.", last_name:"Billones", region:"Central Luzon", sts_bracket:"B", app_status:0, sex:"male", student_tag:"upperclass"
+
+#dorms sa mysql 'to
+INSERT INTO dorms(dorm_name) VALUES
+('Kalayaan'),
+('Molave'),
+('Yakal'),
+('Ipil'),
+('Sanggumay'),
+('Ilang-ilang'),
+('Kamia'),
+('Sampaguita'),
+('Centennial');
+
+#dorm_allotments
+d = dorm.all
+d.each do |x|
+a = DormAllotment.create dorm_id:x.id
+end
+
+#residents
+r = Residents.create student_number:201236209, dorm_id:2
+r = Residents.create student_number:201251283, dorm_id:3
+
+#random stuff
+
+#random users
+i = 0
+while i < 20
+	u = User.create student_number:(201000000 + i), username:("graduate" + i.to_s), password:"password"
+	u = User.create student_number:(201300000 + i), username:("upperclass" + i.to_s), password:"password"
+	u = User.create student_number:(201400000 + i), username:("freshie" + i.to_s), password:"password"
+	i+=1
+end
+
+#random records
+i = 0
+while i < 20
+	r = Record.create student_number:(201000000 + i), first_name:("Graduate" + i.to_s), last_name:"Student", app_status:0, sex:"male", student_tag:"graduate"
+
+	r = Record.create student_number:(201000000 + i + 1), first_name:("Graduate" + i.to_s), last_name:"Student", app_status:0, sex:"female", student_tag:"graduate"
+
+	r = Record.create student_number:(201300000 + i), first_name:("Upperclass" + i.to_s), last_name:"Student", app_status:0, sex:"male", student_tag:"upperclass"
+
+	r = Record.create student_number:(201300000 + i + 1), first_name:("Upperclass" + i.to_s), last_name:"Student", app_status:0, sex:"female", student_tag:"upperclass"
+
+	r = Record.create student_number:(201400000 + i), first_name:("Freshie" + i.to_s), last_name:"Student", app_status:0, sex:"male", student_tag:"freshman"
+
+	r = Record.create student_number:(201400000 + i + 1), first_name:("Freshie" + i.to_s), last_name:"Student", app_status:0, sex:"female", student_tag:"freshman"
+
+	i+=2
+end
+
+#random residents
+i = 0
+while i < 10
+	u = Resident.create student_number:(201000000 + i), dorm_id:4
+	u = Resident.create student_number:(201000000 + i + 1), dorm_id:5
+	
+	i = i+2
+end
+
+
+==========================================================================================
+
+comment:
+not sure how to implement the ra and the osh
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
