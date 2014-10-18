@@ -47,6 +47,8 @@ class UserController < ApplicationController
   	
   	def view_dorms
 		@dorms = Dorm.all
+
+		@oshadmin = Admin.authenticate(current_user.username) == 0? true : false
 	end
 
 	#====================Apply=======================

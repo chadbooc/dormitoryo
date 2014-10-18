@@ -1,34 +1,30 @@
-<div class="login-card">
-    <h1>Log-in</h1><br>
-    <!-- <form> -->
-    <!-- remove comment above if it doesn't work -->
-        <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
-            <p>
-                <%= f.label 'username:' %><br />
-                <%= f.text_field :username %>
-            </p>
-            <p>
-                <%= f.label 'password:' %><br />
-                <%= f.password_field :password %>
-            </p>
-            <p>
-                <%= f.submit 'login' %>&nbsp;&nbsp;&nbsp;            
-            </p>
-        <% end %>   
-    <!-- </form> -->
-    <!-- remove comment above if it doesn't work -->
+<div class="login_container">
+    <h2>LOGIN</h2>
+    <%= form_for @user, :role => 'form', :as => :user, :url => sign_in_path(@user) do |f| %>
+        <div class="form-group">
+            <%= f.label 'username:' %><br />
+            <%= f.text_field :username %>
+        </div>
+        <div class="form-group">
+            <%= f.label 'password:' %><br />
+            <%= f.password_field :password %>
+        </div>
+    
+        <%= f.submit 'login', :class => "btn btn-default" %>&nbsp;&nbsp;&nbsp;            
+    
+    <% end %>   
 </div>
 
 <h3>Announcements</h3>
 
-<table>
+<table class="table announcement">
     <% @announcement.each do |x| %>
-        <tr>
-            <h4><%= x.header %></h4>
-            posted on:
+        <tr><td>
+            <h3><%= x.header %></h3>
+            <small>posted on:</small>
             <%= x.created_at.strftime("%b %d, %Y, %I:%M %P") %>
             <br>
             <%= simple_format(x.content) %>
-        </tr>
+        </td></tr>
     <% end %>
 </table>

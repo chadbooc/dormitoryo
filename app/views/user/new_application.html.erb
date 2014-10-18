@@ -8,24 +8,29 @@
 
 <br>
 <br>  
-<table>
+
+<div>
+<table class="table-striped table table-bordered">
 	<tr>
-		<th>Dorm</th>
-		<th>Available slots</th>
-		<th>Demand</th>
-		<th>Total slots</th>
+		<th class="center" width="20%">Dorm</th>
+		<th class="center" width="20%">Available slots</th>
+		<th class="center" width="20%">Demand</th>
+		<th class="center" width="20%">Total Slots</th>
+		<% unless @admin %> 
+			<th class="center" width="20%"></th>
+		<% end %>
 	</tr>
 
-	<%= @mess %>
 	<%@dorms.each do |x|%>
+	
 	<tr>
 		<td><%=	x.dorm_name %></td>
-		<td><%= Dorm.available(x.id) %></td>
-		<td><%= Applicant.demand(x.id) %></td>	
-		<td><%=	x.total_slots %></td>	
+		<td class="center"><%= Dorm.available(x.id) %></td>			
+		<td class="center"><%= Applicant.demand(x.id)  %></td>			
+		<td class="center"><%=	x.total_slots %></td>	
 		
-		<% if !@admin %> 
-			<td>
+		<% unless @admin %> 
+			<td class="center">
 				<% if Applicant.applied(current_user.student_number, x.id) == nil%>
 					<%= link_to 'select', select_path(:id => x.id), method: :post %>
 				<% else %>
@@ -33,9 +38,12 @@
 				<%end%>
 			</td>		
 		<% end %>
+				
 	</tr>
+
 	<%end%>
 </table>
+</div>
 
 <% if !@admin %> 
 <br>

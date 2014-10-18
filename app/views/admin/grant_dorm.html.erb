@@ -1,0 +1,7 @@
+grant dorm
+
+
+<%= form_for @resident, :url => root_path do |f| %>
+	<% dorm = options_from_collection_for_select(@dorms, 'id', 'dorm_name') %>
+	<%= f.select :dorm_id,  dorm %>
+<% end %>

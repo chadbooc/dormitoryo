@@ -5,23 +5,51 @@
 <%= submit_tag 'search' %>
 <% end %>
 
-<%= @student %>
+<%if @student %>
 
 <table>
+	<tr>
+		<th>student no.</th>
+		<th>name</th>
+	</tr>
+	
+	<tr>
+		<td><%=	@student_number %></td>
+		<td><%= @student %></td>
+		
+		<% if @dormer %>
+		<td>dormer</td>
+		<% elsif !@waitlisted %>		
+		
+		<td><%=link_to 'add to waitlist', admin_add_to_waitlist_path(:student_number => @student_number, :name => @student)%></td>		
+
+		<%else%>
+		<td>already waitlisted</td>	
+
+		<% end %>
+	</tr>
+</table>
+<%end%>
+
+
+<br>
+<h4>waitlist</h4>
+
+	<table>
 	<tr>
 		<th>student no.</th>
 		<th>name</th>
 		<th>action</th>
 	</tr>
 	
-	<tr>
-		<td><%=	x.dorm_name %></td>
-		<td><%= Dorm.available(x.id) %></td>			
-		<td><%=	x.total_slots %></td>	
+	<% @waitlist.each do |x| %>
+		<tr>
+		<td><%=	x.student_number %></td>
+		<td><%= x.first_name + " " + x.last_name %></td>
 		
-		<% if Admin.authenticate(current_user.username) == 0%>
-			<td><%= link_to "modify", "admin/modify_slots/" + x.id.to_s %></td>
-		<% end %>
-				
+		<td>
+			<%= link_to 'grant dorm', admin_grant_dorm_path %> <br>
+		</td>
 	</tr>
+	<%end%>
 </table>

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   post 'admin/post_it' => 'admin#post_it'
   get 'admin/waitlist' => 'admin#waitlist'
   post 'admin/search' => 'admin#search_by_snum'
+  get 'admin/add_to_waitlist' => 'admin#add_to_waitlist'
+  get 'admin/grant_dorm' => 'admin#grant_dorm'
   
 
   # Example of regular route:

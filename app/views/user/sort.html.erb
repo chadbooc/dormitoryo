@@ -1,20 +1,27 @@
-<table>
+<div>
+<table class="table-striped table table-bordered">
 	<tr>
-		<th>Dorm</th>
-		<th>Available slots</th>
-		<th>Total slots</th>
+		<th class="center" width="20%">Dorm</th>
+		<th class="center" width="20%">Available slots</th>
+		<th class="center" width="20%">Demand</th>
+		<th class="center" width="20%">Total Slots</th>
+		<th class="center" width="20%"></th>
 	</tr>
 
 	<%@dorm.each do |x|%>
+	
 	<tr>
 		<td><%=	x.dorm_name %></td>
-		<td><%= Dorm.available(x.id) %></td>			
-		<td><%=	x.total_slots %></td>	
-		<td><%= link_to 'remove', remove_path(:id => x.id), method: :post %></td>	
+		<td class="center"><%= Dorm.available(x.id) %></td>			
+		<td class="center"><%= Applicant.demand(x.id)  %></td>			
+		<td class="center"><%=	x.total_slots %></td>	
+		<td class="center"><%= link_to 'remove', remove_path(:id => x.id), method: :post %></td>		
 	</tr>
 
 	<%end%>
 </table>
+</div>
+
 
 <br>
 <%= link_to '<<back to dorm selection', new_application_path %>

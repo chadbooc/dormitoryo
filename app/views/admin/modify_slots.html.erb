@@ -1,37 +1,37 @@
 
 <h2><%= @dorm.dorm_name %></h2>
 
-<%= form_tag :action => 'save', :id => @dorm do %>
+<%= form_tag :class => "form-control", :role => 'form', :action => 'save', :id => @dorm do %>
 
-<p><label for='total_slots'>Total slots</label>
-<%= number_field :dorm, :total_slots %></p>
+<div class="allot"><label for='total_slots'>Total slots</label>
+<%= number_field :dorm, :total_slots, :class => 'form-control'%></div>
 <h4>allotment</h4>
 
-<table>
+<table class="table allot">
 	<tr>
-		<th>Category</th>
-		<th>male</th>
-		<th>female</th>
+		<th width="20%">Category</th>
+		<th width="20%">male</th>
+		<th width="20%">female</th>
 	</tr>
 
 	<tr>
 		<td>Freshmen</td>
-		<td><%= number_field :dorm_allotment, :freshie_m %></td>
-		<td><%= number_field :dorm_allotment, :freshie_f %></td>
+		<td><%= number_field :dorm_allotment, :freshie_m, :class => 'form-control'%></td>
+		<td><%= number_field :dorm_allotment, :freshie_f, :class => 'form-control' %></td>
 	</tr>
 	<tr>
 		<td>Upperclass</td>
-		<td><%= number_field :dorm_allotment, :upperclass_m %></td>
-		<td><%= number_field :dorm_allotment, :upperclass_f %></td>
+		<td><%= number_field :dorm_allotment, :upperclass_m, :class => 'form-control' %></td>
+		<td><%= number_field :dorm_allotment, :upperclass_f, :class => 'form-control' %></td>
 	</tr>
 	<tr>
 		<td>Graduate</td>
-		<td><%= number_field :dorm_allotment, :graduate_m %></td>
-		<td><%= number_field :dorm_allotment, :graduate_f %></td>
+		<td><%= number_field :dorm_allotment, :graduate_m, :class => 'form-control' %></td>
+		<td><%= number_field :dorm_allotment, :graduate_f, :class => 'form-control' %></td>
 	</tr>
 </table>
 
-<%= submit_tag 'save' %>
+<%= submit_tag 'save', :class => "btn btn-default" %>
 <% end %>
 
 <% if @dorm.errors.any? || @dorm_allotment.errors.any?%>

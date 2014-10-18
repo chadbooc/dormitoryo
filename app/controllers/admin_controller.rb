@@ -59,18 +59,44 @@
 
 	def waitlist
 		@record = Record.new
+		w = Waitlist.select('student_number').all
+		@waitlist = Record.select('student_number, first_name, last_name').where(student_number:w)
 	end
 
 	def search_by_snum
-		student_number = params[:record][:student_number]
-		record = Record.where(student_number:student_number).first
+		@student_number = params[:record][:student_number]
+		@waitlisted = Waitlist.where(student_number:@student_number).first
+		record = Record.where(student_number:@student_number).first
+
+		if Resident.where(student_number:@student_number).first
+			@dormer = true
+		end
 
 		if record
 			@student = Record.full_name(record)
 		end
 		
 		@record = Record.new
+
+
+		w = Waitlist.select('student_number').all
+		@waitlist = Record.select('student_number, first_name, last_name').where(student_number:w)
+
 		render :waitlist
+	end
+
+	def add_to_waitlist
+
+
+		w = Waitlist.create student_number:params[:student_number]
+		@name = params[:name]
+		#redirect_to :root
+	end
+
+	def grant_dorm
+		snum = params[:student_number]
+		@dorms = Dorm.all
+		@resident = Resident.new
 	end
 
 end

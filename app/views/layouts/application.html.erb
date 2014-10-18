@@ -1,39 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> Office of Student Housing - University of the Philippines Diliman</title>
-	<!-- <link rel="stylesheet" href="osh.css"> -->
-	<!-- di ko alam kung pano ba yung sa css.  -->
+	<title> Dormitoryo </title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="header">
-		<osh> Office of Student Housing <br> </osh>
-		<upd> University of the Philippines Diliman </upd>
-	</div> <div id="hbar"> </div>
+	<%= render 'layouts/header' %>
 
 	<% flash.each do |name, msg| %>
 		<%= content_tag :div, msg, :id => "flash_#{name}" %>
 	<% end %>
 
-	<%= yield %>
+	<div class="container">
+   <%= yield %>
+  </div>
 
-	<br>
-	<br>
-	<footer>
-		<% if current_user %>
-			<%= link_to "Home", root_path %>
-			<%= link_to "Apply", new_application_path %>
-			<%= link_to "Dorms", view_dorms_path %>
-			<% if Admin.authenticate(current_user.username) != nil %>
-				<%= link_to "Post", admin_post_path %>
-				<%= link_to "Waitlist", admin_waitlist_path %>
-			<% end %>
-			<%= link_to "Logout", logout_path, method: :post%>
-		<% end %>
-	</footer>
-
+  <%= render 'layouts/footer' %>
 </body>
 </html>

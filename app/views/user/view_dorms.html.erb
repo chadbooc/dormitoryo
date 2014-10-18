@@ -1,22 +1,27 @@
-<table>
+<div>
+<table class="table-striped table table-bordered">
 	<tr>
-		<th>Dorm</th>
-		<th>Available slots</th>
-		<th>Total slots</th>
+		<th class="center" width="40%">Dorm</th>
+		<th class="center" width="20%">Available slots</th>
+		<th class="center" width="20%">Total slots</th>
+		<% if @oshadmin %>
+			<th class="center" width="20%"></th>
+		<% end %>
 	</tr>
 
 	<%@dorms.each do |x|%>
 	
 	<tr>
 		<td><%=	x.dorm_name %></td>
-		<td><%= Dorm.available(x.id) %></td>			
-		<td><%=	x.total_slots %></td>	
+		<td class="center"><%= Dorm.available(x.id) %></td>			
+		<td class="center"><%=	x.total_slots %></td>	
 		
-		<% if Admin.authenticate(current_user.username) == 0%>
-			<td><%= link_to "modify", "admin/modify_slots/" + x.id.to_s %></td>
+		<% if @oshadmin%>
+			<td class="center"><%= link_to "modify", "admin/modify_slots/" + x.id.to_s %></td>
 		<% end %>
 				
 	</tr>
 
 	<%end%>
 </table>
+</div>

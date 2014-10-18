@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015062337) do
+ActiveRecord::Schema.define(version: 20141018102227) do
 
   create_table "admins", force: true do |t|
     t.string  "username"
@@ -74,6 +74,11 @@ ActiveRecord::Schema.define(version: 20141015062337) do
     t.string  "username"
     t.string  "password_hash"
     t.string  "password_salt"
+  end
+
+  create_table "waitlists", force: true do |t|
+    t.integer "student_number"
+    t.integer "rank"
   end
 
 end

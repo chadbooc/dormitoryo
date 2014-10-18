@@ -1,13 +1,20 @@
 
+<div class="post">
 <h3>Post Announcements</h3>
 
-<%= form_tag :action => 'post_it' do%>
-	<p>Subject:</p>
-	<%= text_area(:post, :header, :rows => 1, :cols => "50%" ) %><br/>
-	<p>Content:</p>
-	<%= text_area(:post, :content, :rows => 10, :cols => "50%" ) %><br/>
+<%= form_tag :role => 'form', :action => 'post_it' do%>
+	<div class="form-group">
+		<label>Subject:</label><br>
+		<%= text_field(:post, :header, :class => 'form-control') %><br/>
+	</div>
 	
-	<%= submit_tag("post") %>
+	<div class="form-group">
+		<label>Content:</label><br>
+		<%= text_area(:post, :content, :rows => "10%", :class => 'form-control') %><br/>
+	</div>
+
+	<%= submit_tag("post", :class => "btn btn-default") %>
 <% end %>
+</div>
 
 <br>
